@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Dealz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'style.css')}}">
+</head>
+<body>
+    <div class="container">
+        <div class="flex-container">
+            <h1>Welcome {{user.first_name}}</h1>
+            <div>
+                <a href="/cars/dashboard">Dashboard</a>
+                <a href="/logout">Logout</a>
+            </div>
+        </div>
+        <div class="form-container">
+
+            <div  class="detail-container">
+                <div class="flex-container">
+                    
+                    <h2>${{car.price}}</h2>
+                </div>
+                <div class="flex-container">
+                    <p>Model:</p>
+                    <p>{{car.model}}</p>
+                </div>
+                <div class="flex-container">
+                    <p>Make:</p>
+                    <p>{{car.make}}</p>
+                </div>
+                <div class="flex-container">
+                    <p>Description:</p>
+                    <p>{{car.description}}</p>
+                </div>
+                <div class="flex-container">
+                    <p>Seller:</p>   
+                    <p>{{car.user.first_name}} {{car.user.last_name}}</p>
+                </div>
+                <button><a href="/cars/delete/{{car.id}}">Purchase</a></button>
+            </div>
+        </div>
+    </div>
+    </body>
+    </html>

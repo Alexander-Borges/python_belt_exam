@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Dealz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'style.css')}}">
+
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Car Dealz, {{user.first_name}}!!!</h1>
+        <div class="form-container">
+            <a href="/logout" class="btn btn-info">Logout</a>
+        </div>
+        <h2>Cars for Sale:</h2>
+        <table class="striped-table">
+            <thead>
+                <tr>
+                    <th>Model</th>
+                    <th>Year</th>
+                    <th>Seller</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for car in cars %}
+                <tr>
+                    <td>{{car.model}}</td>
+                    <td>{{car.year}}</td>
+                    <td>{{car.user.first_name}} {{car.user.last_name}}</td>
+                    <td>
+                        <a href="/cars/{{car.id}}">View</a>
+                        <!--Edit and Delete Conditional-->
+                        <!-- if logged in user id is the same as car's owner's id-->
+                        {% if user.id == car.user.id %}
+                        <a href="/cars/edit/{{car.id}}">Edit</a>
+                        <a href="/cars/delete/{{car.id}}">Delete</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %} 
+            </tbody>
+        </table>
+        <button>
+            <a href="/cars/new">Add a new car!</a>
+        </button>
+    </div>
+    
+    
+</body>
+</html>
+
